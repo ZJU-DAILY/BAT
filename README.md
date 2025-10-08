@@ -1,10 +1,11 @@
-# Bat: Target-Instance-Free Data Preparation Synthesis viaLLM-driven Tree Search
+# BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search
 
 > **Note:** This work is currently under review.
 
-This repository is the official implementation of "**Bat: Target-Instance-Free Data Preparation Synthesis viaLLM-driven Tree Search**"
+This repository is the official implementation of "**BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search**"
 
-In commercial systems, a pervasive requirement for automatic data preparation (ADP) is to transfer relational data from disparate sources to targets with standardized schema specifications. Previous methods rely on labor-intensive supervision signals or target table data access permissions, limiting their usage in real-world scenarios. To tackle these challenges, we propose an effective end-to-end ADP framework MontePrep, which enables training-free pipeline synthesis with zero target-instance requirements. MontePrep is formulated as an open-source large language model (LLM) powered tree-structured search problem. It consists of three pivot components: a data preparation action sandbox (DPAS), a fundamental pipeline generator (FPG), and an execution-aware pipeline optimizer (EPO). We first introduce DPAS, a lightweight action sandbox that navigates the search-based pipeline generation and circumvents exploration of infeasible pipelines. Then, we present FPG to incrementally build executable data preparation pipelines by exploring the predefined action sandbox using LLM-powered Monte Carlo Tree Search. Furthermore, EPO evaluates the reliability of the generated pipelines in FPG by invoking pipeline execution results from sources to targets. In this way, unreasonable pipelines are eliminated, improving both the efficiency and effectiveness of the search process. Extensive experimental results demonstrate the superiority of MontePrep, showing significant improvements over five state-of-the-art competitors.
+In real-world scenarios, a pervasive requirement for automatic data preparation (ADP) is to transfer relational data from disparate sources to targets with standardized schemas. Previous methods rely on labor-intensive supervision signals or access permissions to target table data, limiting their usage in commercial systems.
+To tackle these challenges, we propose BAT, an effective end-to-end ADP framework. It enables the synthesis of training-free data preparation pipelines without requiring any instances from target tables. BAT is formulated as an open-source large language model (LLM) driven tree-structured search problem. It consists of three pivot components, i.e., a data preparation action sandbox (DPAS), a fundamental pipeline generator (FPG), and an execution-aware pipeline optimizer (EPO). We first introduce DPAS, a lightweight action sandbox, to navigate the search-based data preparation pipeline generation process. The design of DPAS circumvents exploration of infeasible pipelines. Then, we present FPG, an LLM-driven Monte Carlo tree search process, to incrementally generate executable DP pipelines within the constraints of the predefined action sandbox. Furthermore, we propose EPO, which invokes pipeline execution results from sources to targets to evaluate the reliability of the generated pipelines in FPG. In this way, unreasonable pipelines are eliminated, thus facilitating the search process from both efficiency and effectiveness perspectives. Extensive experiments on real-world datasets show that BAT significantly outperforms 5 state-of-the-art competitors, achieving 8.74%-70.30% improvements in accuracy.
 
 ---
 
@@ -20,9 +21,9 @@ In commercial systems, a pervasive requirement for automatic data preparation (A
 | Chain-of-Thought | Qwen2\.5-Coder-32B | 77\.03                    | 79\.97     | **0\.09**  | 51\.43                      | 56\.55     | 0\.20      |
 | ReAct            | Qwen2\.5-Coder-32B | 79\.83                    | 84\.40     | 0\.10      | 51\.43                      | 60\.47     | 0\.22      |
 | FunctionCalling  | Qwen2\.5-Coder-32B | 18\.27                    | 50\.29     | 0\.28      | 19\.61                      | 30\.08     | 0\.40      |
-| MontePrep         | Qwen2\.5-Coder-32B | **88\.57**                | **89\.69** | 1\.16      | **68\.57**                  | **84\.67** | 3\.24      |
-| MontePrep           | Qwen2\.5-Coder-14B | 82\.95                    | 85\.74     | 1\.20      | 48\.57                      | 60\.84     | 3\.17      |
-| MontePrep           | Qwen2\.5-Coder-7B  | 47\.19                    | 49\.80     | 1\.47      | 17\.14                      | 35\.19     | 4\.34      |
+| BAT         | Qwen2\.5-Coder-32B | **88\.57**                | **89\.69** | 1\.16      | **68\.57**                  | **84\.67** | 3\.24      |
+| BAT           | Qwen2\.5-Coder-14B | 82\.95                    | 85\.74     | 1\.20      | 48\.57                      | 60\.84     | 3\.17      |
+| BAT           | Qwen2\.5-Coder-7B  | 47\.19                    | 49\.80     | 1\.47      | 17\.14                      | 35\.19     | 4\.34      |
 
 ---
 
