@@ -1,8 +1,8 @@
-# MontePrep: Monte-Carlo-Driven Automatic Data Preparation without Target Data Instances
+# Bat: Target-Instance-Free Data Preparation Synthesis viaLLM-driven Tree Search
 
 > **Note:** This work is currently under review.
 
-This repository is the official implementation of "**MontePrep: Monte-Carlo-Driven Automatic Data Preparation without Target Data Instances**"
+This repository is the official implementation of "**Bat: Target-Instance-Free Data Preparation Synthesis viaLLM-driven Tree Search**"
 
 In commercial systems, a pervasive requirement for automatic data preparation (ADP) is to transfer relational data from disparate sources to targets with standardized schema specifications. Previous methods rely on labor-intensive supervision signals or target table data access permissions, limiting their usage in real-world scenarios. To tackle these challenges, we propose an effective end-to-end ADP framework MontePrep, which enables training-free pipeline synthesis with zero target-instance requirements. MontePrep is formulated as an open-source large language model (LLM) powered tree-structured search problem. It consists of three pivot components: a data preparation action sandbox (DPAS), a fundamental pipeline generator (FPG), and an execution-aware pipeline optimizer (EPO). We first introduce DPAS, a lightweight action sandbox that navigates the search-based pipeline generation and circumvents exploration of infeasible pipelines. Then, we present FPG to incrementally build executable data preparation pipelines by exploring the predefined action sandbox using LLM-powered Monte Carlo Tree Search. Furthermore, EPO evaluates the reliability of the generated pipelines in FPG by invoking pipeline execution results from sources to targets. In this way, unreasonable pipelines are eliminated, improving both the efficiency and effectiveness of the search process. Extensive experimental results demonstrate the superiority of MontePrep, showing significant improvements over five state-of-the-art competitors.
 
