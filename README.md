@@ -60,7 +60,7 @@ To quickly set up and run the benchmark, follow the steps below:
 Replace the api-key in the following config.py.
 
 ```bash
-MontePrep/src/llm/config.py
+BAT/src/llm/config.py
 ```
 
 ### Dataset Preparation
