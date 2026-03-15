@@ -1,6 +1,5 @@
 # BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search
 
-> **Note:** This work is currently under review.
 
 This repository is the official implementation of "**BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search**"
 
