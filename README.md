@@ -1,30 +1,36 @@
 # BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search
 
 
+
 This repository is the official implementation of "**BAT: Target-Instance-Free Data Preparation Synthesis via LLM-driven Tree Search**"
 
 In real-world scenarios, a pervasive requirement for automatic data preparation (ADP) is to transfer relational data from disparate sources to targets with standardized schemas. Previous methods rely on labor-intensive supervision signals or access permissions to target table data, limiting their usage in commercial systems.
 To tackle these challenges, we propose BAT, an effective end-to-end ADP framework. It enables the synthesis of training-free data preparation pipelines without requiring any instances from target tables. BAT is formulated as an open-source large language model (LLM) driven tree-structured search problem. It consists of three pivot components, i.e., a data preparation action sandbox (DPAS), a fundamental pipeline generator (FPG), and an execution-aware pipeline optimizer (EPO). We first introduce DPAS, a lightweight action sandbox, to navigate the search-based data preparation pipeline generation process. The design of DPAS circumvents exploration of infeasible pipelines. Then, we present FPG, an LLM-driven Monte Carlo tree search process, to incrementally generate executable DP pipelines within the constraints of the predefined action sandbox. Furthermore, we propose EPO, which invokes pipeline execution results from sources to targets to evaluate the reliability of the generated pipelines in FPG. In this way, unreasonable pipelines are eliminated, thus facilitating the search process from both efficiency and effectiveness perspectives. Extensive experiments on real-world datasets show that BAT significantly outperforms 5 state-of-the-art competitors, achieving 8.74%-70.30% improvements in accuracy.
 
 ---
+## 📢 News & Updates
 
+- **[2026-05]** We have updated the evaluation metrics to provide a more comprehensive assessment of automated data preparation pipeline generation methods.
 
+---
 
 ## Key Experimental Results
 
-| **Method**       | **LLM Model**      | **Auto-Pipeline Dataset** |            |            | **Smart Buildings Dataset** |            |            |
-| :--------------- | :----------------- | :-----------------------: | :--------: | :--------: | :-------------------------: | :--------: | :--------: |
-|                  |                    | EX (%)                    | CS (%)     | Time (min) | EX (%)                      | CS (%)     | Time (min) |
-| SQLMorpher       | Qwen2\.5-Coder-32B | 71\.46                    | 75\.22     | 0\.50      | 55\.45                      | 58\.54     | 0\.42      |
-| Chain-of-Tables  | Qwen2\.5-Coder-32B | 56\.13                    | 58\.77     | 0\.12      | 43\.81                      | 48\.03     | **0\.16**  |
-| Chain-of-Thought | Qwen2\.5-Coder-32B | 77\.03                    | 79\.97     | **0\.09**  | 51\.43                      | 56\.55     | 0\.20      |
-| ReAct            | Qwen2\.5-Coder-32B | 79\.83                    | 84\.40     | 0\.10      | 51\.43                      | 60\.47     | 0\.22      |
-| FunctionCalling  | Qwen2\.5-Coder-32B | 18\.27                    | 50\.29     | 0\.28      | 19\.61                      | 30\.08     | 0\.40      |
-| BAT         | Qwen2\.5-Coder-32B | **88\.57**                | **89\.69** | 1\.16      | **68\.57**                  | **84\.67** | 3\.24      |
-| BAT           | Qwen2\.5-Coder-14B | 82\.95                    | 85\.74     | 1\.20      | 48\.57                      | 60\.84     | 3\.17      |
-| BAT           | Qwen2\.5-Coder-7B  | 47\.19                    | 49\.80     | 1\.47      | 17\.14                      | 35\.19     | 4\.34      |
+| **Method**       | **LLM Model**      | **Auto-Pipeline Dataset** |             |            |            | **Smart Buildings Dataset** |             |            |            |
+| :--------------- | :----------------- | :-----------------------: | :---------: | :--------: | :--------: | :-------------------------: | :---------: | :--------: | :--------: |
+|                  |                    |        Acc_EM (%)         | Acc_Pip (%) |   CS (%)   | Time (min) |         Acc_EM (%)          | Acc_Pip (%) |   CS (%)   | Time (min) |
+| SQLMorpher       | Qwen2\.5-Coder-32B |          30\.72           |   71\.46    |   75\.22   |   0\.50    |            3\.81            |   55\.45    |   58\.54   |   0\.42    |
+| Chain-of-Tables  | Qwen2\.5-Coder-32B |          36\.17           |   56\.13    |   58\.77   |   0\.12    |           10\.48            |   43\.81    |   48\.03   | **0\.16**  |
+| Chain-of-Thought | Qwen2\.5-Coder-32B |          46\.78           |   77\.03    |   79\.97   | **0\.09**  |            5\.71            |   51\.43    |   56\.55   |   0\.20    |
+| ReAct            | Qwen2\.5-Coder-32B |          47\.61           |   79\.83    |   84\.40   |   0\.10    |            8\.57            |   51\.43    |   60\.47   |   0\.22    |
+| FunctionCalling  | Qwen2\.5-Coder-32B |          12\.09           |   18\.27    |   50\.29   |   0\.28    |            0\.0             |   19\.61    |   30\.08   |   0\.40    |
+| BAT              | Qwen2\.5-Coder-32B |        **61\.39**         | **88\.57**  | **89\.69** |   1\.16    |         **20\.32**          | **68\.57**  | **84\.67** |   3\.24    |
+| BAT              | Qwen2\.5-Coder-14B |          59\.92           |   82\.95    |   85\.74   |   1\.20    |           15\.24            |   48\.57    |   60\.84   |   3\.17    |
+| BAT              | Qwen2\.5-Coder-7B  |          29\.54           |   47\.19    |   49\.80   |   1\.47    |            3\.81            |   17\.14    |   35\.19   |   4\.34    |
 
----
+> **Acc_EM (Exact Match Accuracy)**  denotes that the output table must match the target in both schema and cell values; **Acc_Pipe (Pipeline Level Accuracy)** measures the percentage of runnable pipelines whose output schema matches the target.
+
+
 
 ## Dataset Description
 
